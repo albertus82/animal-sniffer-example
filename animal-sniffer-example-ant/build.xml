@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="animal-sniffer-example-ant" xmlns:as="antlib:org.codehaus.mojo.animal_sniffer">
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+	<fileset id="classpath" dir="lib" erroronmissingdir="false">
+		<include name="*.jar" />
+	</fileset>
+
+	<target name="compile">
+		<mkdir dir="build/classes" />
+		<javac srcdir="src" destdir="build/classes" source="1.8" target="1.8" includeantruntime="false" debug="true">
+			<classpath>
+				<fileset refid="classpath" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="check-signature">
+		<typedef uri="antlib:org.codehaus.mojo.animal_sniffer">
+			<classpath path="ant/animal-sniffer/animal-sniffer-ant-tasks-1.16.jar" />
+		</typedef>
+		<as:check-signature signature="ant/animal-sniffer/java18-1.0.signature">
+			<path path="build/classes" />
+			<classpath>
+				<fileset refid="classpath" />
+			</classpath>
+		</as:check-signature>
+	</target>
+
+</project>

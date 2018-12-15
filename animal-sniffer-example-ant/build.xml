@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="animal-sniffer-example-ant" xmlns:as="antlib:org.codehaus.mojo.animal_sniffer">
 
-    <target name="clean">
-        <delete dir="build"/>
-    </target>
+	<target name="clean">
+		<delete dir="build" />
+	</target>
 
 	<fileset id="classpath" dir="lib" erroronmissingdir="false">
 		<include name="*.jar" />
@@ -12,6 +12,7 @@
 	<target name="compile">
 		<mkdir dir="build/classes" />
 		<javac srcdir="src" destdir="build/classes" source="1.8" target="1.8" includeantruntime="false" debug="true">
+			<compilerarg value="-version" />
 			<classpath>
 				<fileset refid="classpath" />
 			</classpath>
